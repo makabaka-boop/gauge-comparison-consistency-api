@@ -1,0 +1,14 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gaugenet-api:latest
+    container_name: gaugenet-api
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: "8080"
+    restart: unless-stopped
+    # The runtime image is distroless (no shell/curl); probe health from
+    # the host with: curl -fsS http://localhost:8080/healthz
