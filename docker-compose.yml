@@ -1,0 +1,14 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gaugeblock-api:latest
+    container_name: gaugeblock-api
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: "8080"
+    restart: unless-stopped
+    # 运行时镜像为 distroless（无 shell/curl）。可在宿主机验证：
+    #   curl -sf http://localhost:8080/healthz
